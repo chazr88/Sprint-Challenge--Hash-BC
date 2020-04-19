@@ -24,11 +24,24 @@ This sprint challenge is divided up into three parts:  Hash tables coding, block
 
 Explain in detail the workings of a dynamic array:
 * What is the runtime complexity to access an array, add or remove from the front, and add or remove from the back?
-* What is the worse case scenario if you try to extend the storage size of a dynamic array?
+The runtime complexity to access an array is constant time O(1). To add, remove anywhere in an array requires the array to shift and move, and how much
+this has to happen depends on the size of the array, so this operation is O(n)
 
-Explain how a blockchain is structured. What are the blocks, what is the chain? How is the data organized?
+* What is the worse case scenario if you try to extend the storage size of a dynamic array?
+The worst case will always be O(n)
+
+*Explain how a blockchain is structured. What are the blocks, what is the chain? How is the data organized?
+A blockchain is structure by linking many blocks together based on their hash and previous hash.
+Blocks are the individual structures that make up the chain. They are made up of data usually including a dateTime, proof, some transaction data, hash, and previous hash.
+The chain is the linking together of these blocks. They are liked together by their hashes.
+The data is usually organized... dateTime, proof, some transaction data, hash, and previous hash.
  
-Explain how proof of work functions. How does it operate. How does this protect the chain from attack. What kind of attack is possible?
+*Explain how proof of work functions. How does it operate. How does this protect the chain from attack. What kind of attack is possible?
+Proof of work usually takes a combination of the proof, the current hash and the previous hash. The correct proof and previous hash will always equal the current hash.
+It operates by taking the current hash, and proof, and making sure they equal the previous hash. If not the proof may be faked or just wrong. 
+This protects from attacks by ensuring no one can fake the proof. If they fake the proof or change any data, it will change the current hash, causing it to no longer be taken with the 
+    proof and  equal the previous hash
+A possible attack is if someone tries to fake the hash of a block, then try to recreate the rest of the chain before the P2P network can correct it. If they have enough of the computing power for that blockchain, they could possibly become the "correct" version of the blockchain. 
 
 ## Project Set Up
 
