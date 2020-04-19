@@ -26,16 +26,23 @@ def reconstruct_trip(tickets, length):
     for i in range(length):
         hash_table_insert(hashtable, tickets[i].source, tickets[i].destination)
 
-    for j in range(length):
-        current_loc = hash_table_retrieve(hashtable, tickets[j].source)
-        last_loc = hash_table_retrieve(hashtable, tickets[j-1].destination)
-        print(hash_table_retrieve(hashtable, tickets[j].source))
-        print(hash_table_retrieve(hashtable, tickets[j-1].destination))
-        # if tickets[j].source == None:
-        #     route.insert(0, tickets[j].destination)
-        if hash_table_retrieve(hashtable, current_loc) and current_loc == tickets.destination:
-            print("worked")
-            route[j] = (current_loc)
+    current_destination = hash_table_retrieve(hashtable, "NONE")
+
+    while current_destination is not "NONE":#This should loop thru and ignore the ticket with dest as NONE
+        print(current_destination)
+        for j in range(length): 
+            print(current_destination)
+            route[j] = current_destination #Adds dest of current ticket to the list
+
+            #Use current_destination as a key to find the next ticket. Since the source is key and dest is value,
+            #we can say "now use this location as key and get me the next dest"
+
+            current_destination = hash_table_retrieve(hashtable, current_destination) 
+            #Last we pull the item with NONE as dest and put it at the end of the array
+            if current_destination is "NONE": 
+                route[j+1] = current_destination 
+                break
+
             
     while "NONE" in route: route.remove("NONE")
 
@@ -54,7 +61,7 @@ ticket_9 = Ticket("SLC", "PIT")
 ticket_10 = Ticket("BHM", "FLG")
 
 tickets = [ticket_1, ticket_2, ticket_3, ticket_4, ticket_5,
-            ticket_6, ticket_7, ticket_8, ticket_9, ticket_10]
+                ticket_6, ticket_7, ticket_8, ticket_9, ticket_10]
 
 
 reconstruct_trip(tickets, 10)
